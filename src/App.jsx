@@ -211,7 +211,18 @@ export default function App() {
   const mapLeft = sidebarOpen ? `${SIDEBAR_WIDTH}px` : '0px'
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        overflow: 'hidden',
+
+        // Bigger UI text globally (can be overridden by component styles)
+        fontSize: '16px',
+        lineHeight: 1.35,
+      }}
+    >
 
       {/* ── Map container ── */}
       <div
@@ -274,15 +285,51 @@ export default function App() {
         />
       )}
 
-      {/* ── Map attribution offset ── */}
+      {/* ── Leaflet UI + map visibility tweaks ── */}
       <style>{`
+        /* Keep attribution aligned when sidebar opens */
         .leaflet-control-attribution {
           margin-left: ${sidebarOpen ? SIDEBAR_WIDTH + 'px' : '0px'} !important;
           transition: margin-left 0.25s;
+
+          font-size: 13px !important;
+          padding: 6px 8px !important;
+          background: rgba(10, 16, 26, 0.72) !important;
+          color: rgba(255,255,255,0.78) !important;
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(0,229,255,0.18);
+          border-radius: 10px;
         }
+
+        /* Make zoom controls easier to hit + more readable */
         .leaflet-control-zoom {
           margin-right: 56px !important;
           margin-bottom: 20px !important;
+          border: 1px solid rgba(0,229,255,0.18) !important;
+          border-radius: 12px !important;
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .leaflet-control-zoom a {
+          width: 44px !important;
+          height: 44px !important;
+          line-height: 44px !important;
+          font-size: 22px !important;
+          background: rgba(10, 16, 26, 0.72) !important;
+          color: rgba(255,255,255,0.9) !important;
+        }
+        .leaflet-control-zoom a:hover {
+          background: rgba(18, 28, 44, 0.82) !important;
+        }
+
+        /* Brighten dark tiles (keeps your dark theme but improves visibility) */
+        .leaflet-tile {
+          filter: brightness(1.18) contrast(1.06) saturate(1.08);
+        }
+
+        /* Make overlays pop slightly */
+        .leaflet-overlay-pane svg path {
+          filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
         }
       `}</style>
 
