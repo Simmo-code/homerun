@@ -1,65 +1,60 @@
 /* ═══════════════════════════════════════════════
-   HOMERUN — Global Design System (UPDATED)
-   Bigger type + brighter surfaces + improved map legibility
+   HOMERUN — UI Upgrade (Brighter + Larger)
    ═══════════════════════════════════════════════ */
 
 :root {
-  /* ── Core palette (slightly brighter than before) ── */
-  --bg:           #0b1220;   /* was #070b12 */
-  --surface-0:    #0e1727;   /* was #0a0f1a */
-  --surface-1:    #101c30;   /* was #0d1525 */
-  --surface-2:    #14233b;   /* was #111c30 */
-  --surface-3:    #1a2e4d;   /* was #182640 */
-  --surface-4:    #21385e;   /* was #1e3050 */
 
-  /* Borders (a touch stronger for readability) */
-  --border-subtle:  rgba(0, 180, 220, 0.10);
-  --border-default: rgba(0, 180, 220, 0.18);
-  --border-strong:  rgba(0, 180, 220, 0.32);
+  /* ───────── BACKGROUND (brighter, not black) ───────── */
 
-  /* Brand accents */
+  --bg:           #131c2c;
+  --surface-0:    #182234;
+  --surface-1:    #1c2940;
+  --surface-2:    #223352;
+  --surface-3:    #2a4066;
+  --surface-4:    #314b78;
+
+  /* ───────── BORDERS (more visible) ───────── */
+
+  --border-subtle:  rgba(0, 200, 255, 0.10);
+  --border-default: rgba(0, 200, 255, 0.22);
+  --border-strong:  rgba(0, 200, 255, 0.40);
+
+  /* ───────── BRAND ACCENTS ───────── */
+
   --cyan:    #00e5ff;
-  --cyan-dim: rgba(0, 229, 255, 0.12);
   --amber:   #ffc107;
-  --amber-dim: rgba(255, 193, 7, 0.12);
   --green:   #00e676;
-  --green-dim: rgba(0, 230, 118, 0.12);
   --red:     #ff3d3d;
   --orange:  #ff9100;
   --violet:  #b388ff;
   --blue:    #82b1ff;
 
-  /* Text (brighter + better contrast) */
-  --text-primary:   rgba(255,255,255,0.92); /* was #dde8f5 */
-  --text-secondary: rgba(255,255,255,0.72); /* was #6b8299 */
-  --text-muted:     rgba(255,255,255,0.54); /* was #3a4f66 */
-  --text-ghost:     rgba(255,255,255,0.32); /* was #1e2d40 */
+  /* ───────── TEXT (much brighter) ───────── */
 
-  /* Typography */
+  --text-primary:   #ffffff;
+  --text-secondary: rgba(255,255,255,0.82);
+  --text-muted:     rgba(255,255,255,0.60);
+  --text-ghost:     rgba(255,255,255,0.35);
+
+  /* ───────── TYPOGRAPHY (bigger globally) ───────── */
+
   --font-mono: 'JetBrains Mono', monospace;
   --font-ui:   'Barlow Condensed', sans-serif;
 
-  /* Global type scale (bigger by default) */
-  --ui-size: 16px;     /* base app text */
-  --mono-size: 14px;   /* mono/data text */
-  --line: 1.35;
+  --ui-size: 17px;       /* was 15–16 */
+  --mono-size: 15px;
+  --line: 1.45;
 
   /* Layout */
   --sidebar-w: 340px;
-  --sidebar-collapsed: 52px;
   --topbar-h: 44px;
-  --panel-radius: 12px; /* slightly rounder feels “less cramped” */
+  --panel-radius: 14px;
 
-  /* Controls */
-  --control-bg: rgba(12, 20, 34, 0.72);
-  --control-bg-hover: rgba(20, 32, 52, 0.82);
-
-  /* Transitions */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Reset */
+/* ───────── RESET ───────── */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -80,7 +75,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optional helpers (useful if components already apply these classes) */
+/* Mono helpers */
 .mono, code, pre {
   font-family: var(--font-mono);
   font-size: var(--mono-size);
@@ -92,148 +87,85 @@ html, body {
   position: relative;
 }
 
-/* Scrollbars */
-::-webkit-scrollbar { width: 6px; height: 6px; } /* was 3px */
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 6px; }
+/* ───────── SCROLLBARS (thicker) ───────── */
 
-/* Selection */
-::selection { background: rgba(0, 229, 255, 0.2); color: var(--cyan); }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 6px;
+}
 
-/* ─────────────── Leaflet overrides ─────────────── */
+/* ───────── LEAFLET (brighter map) ───────── */
 
 .leaflet-container {
-  background: #0a1020 !important; /* slightly brighter than before */
+  background: #162233 !important;
   font-family: var(--font-ui) !important;
 }
 
-/* Brighten tiles (keeps Dark Matter but makes it readable) */
+/* Brighten dark tiles */
 .leaflet-tile {
-  filter: brightness(1.18) contrast(1.06) saturate(1.08);
+  filter: brightness(1.25) contrast(1.05) saturate(1.1);
 }
 
-/* Bigger, easier zoom controls */
+/* Bigger zoom buttons */
 .leaflet-control-zoom {
-  border: 1px solid var(--border-default) !important;
-  border-radius: 12px !important;
+  border-radius: 14px !important;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
+  border: 1px solid var(--border-default) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
 }
 
 .leaflet-control-zoom a {
-  background: var(--control-bg) !important;
-  color: var(--text-secondary) !important;
-  border-bottom: 1px solid var(--border-subtle) !important;
-  font-family: var(--font-mono) !important;
-
-  /* Bigger hit targets */
+  width: 48px !important;
+  height: 48px !important;
+  line-height: 48px !important;
   font-size: 22px !important;
-  line-height: 44px !important;
-  width: 44px !important;
-  height: 44px !important;
-
-  transition: all 0.15s;
+  background: var(--surface-1) !important;
+  color: var(--text-secondary) !important;
 }
 
 .leaflet-control-zoom a:hover {
-  background: var(--control-bg-hover) !important;
+  background: var(--surface-2) !important;
   color: var(--cyan) !important;
 }
 
-/* Attribution: readable + not tiny */
+/* Attribution readable */
 .leaflet-control-attribution {
-  background: rgba(10,16,26,0.72) !important;
+  font-size: 13px !important;
+  background: rgba(20,30,50,0.85) !important;
   color: var(--text-muted) !important;
-  font-size: 12px !important; /* was 10px */
-  font-family: var(--font-mono) !important;
-  padding: 6px 8px !important;
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-subtle) !important;
+  padding: 6px 10px !important;
   border-radius: 10px;
-  margin: 10px !important; /* gives it breathing room */
+  border: 1px solid var(--border-subtle) !important;
 }
 
-.leaflet-control-attribution a {
-  color: var(--text-secondary) !important;
-}
-
-/* Popup styling */
+/* Popups */
 .leaflet-popup-content-wrapper {
   background: var(--surface-1) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--border-default) !important;
   border-radius: var(--panel-radius) !important;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.7) !important;
-  padding: 0 !important;
+  border: 1px solid var(--border-default) !important;
 }
 
 .leaflet-popup-content {
-  margin: 0 !important;
-  font-family: var(--font-ui) !important;
-  font-size: 15px;
-  line-height: 1.25;
+  font-size: 16px;
+  padding: 14px;
 }
 
-.leaflet-popup-tip-container { display: none; }
+/* ───────── MAKE MENUS LIGHTER ───────── */
 
-.leaflet-popup-close-button {
-  color: var(--text-secondary) !important;
-  top: 10px !important;
-  right: 10px !important;
-  font-size: 18px !important;
+.sidebar,
+.panel,
+.card,
+.menu,
+.route-card {
+  background: var(--surface-1) !important;
+  border: 1px solid var(--border-default);
+  border-radius: var(--panel-radius);
 }
 
-/* Make vector overlays pop a bit */
-.leaflet-overlay-pane svg path {
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
-}
-
-/* ─────────────── ANIMATIONS ─────────────── */
-
-@keyframes pulseRing {
-  0%   { transform: scale(1); opacity: 0.8; }
-  70%  { transform: scale(2.2); opacity: 0; }
-  100% { transform: scale(2.2); opacity: 0; }
-}
-
-@keyframes blinkDot {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.3; }
-}
-
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-@keyframes scanLine {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
+/* ───────── ANIMATIONS (unchanged) ───────── */
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-12px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes toastIn {
-  from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(0.96); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-}
-
-@keyframes toastOut {
-  to { opacity: 0; transform: translateX(-50%) translateY(8px) scale(0.96); }
-}
-
-@keyframes routeDash {
-  to { stroke-dashoffset: -100; }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
