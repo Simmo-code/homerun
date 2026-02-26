@@ -102,13 +102,49 @@ ${a}`);window.open(`sms:?body=${m}`)},C=()=>{var m;(m=navigator.share)==null||m.
 
 I'm at: ${e.name}
 Coords: ${e.lat.toFixed(5)}, ${e.lon.toFixed(5)}
-Track me: ${window.location.href}`);window.open(`sms:?body=${Z}`),v("🆘 SOS SMS opened","warn")},[e,v]);W.useEffect(()=>{const Z=J=>{J.key==="Escape"&&S(!1),(J.ctrlKey||J.metaKey)&&J.key==="\\"&&E(q=>!q)};return window.addEventListener("keydown",Z),()=>window.removeEventListener("keydown",Z)},[]);const $=w?`${xa}px`:"0px";return k.jsxs("div",{style:{width:"100%",height:"100%",position:"relative",overflow:"hidden"},children:[k.jsx("div",{ref:z,style:{position:"fixed",top:"44px",left:$,right:0,bottom:0,zIndex:1,transition:"left 0.25s var(--ease-smooth)"}}),k.jsx(sg,{from:e,to:i,onShareClick:Z=>v(Z),onSidebarToggle:()=>E(Z=>!Z),sidebarOpen:w}),k.jsx(dg,{open:w,width:xa,from:e,to:i,onFromChange:n,onFromClear:()=>n(null),onToChange:o,onToClear:()=>o(null),home:U,onSetHome:Le,onLoadHome:_t,onGetLocation:mt,routes:a,activeRouteIdx:f,onRouteSelect:h,loading:p,nearbyStops:C,onNearbyStopClick:O,onGetRoutes:ki}),k.jsx(pg,{onCentreMe:K,onSharePanel:()=>S(!0),onSOS:R,sidebarOpen:w}),M&&k.jsx(mg,{from:e,to:i,onClose:()=>S(!1),showToast:v}),k.jsx("style",{children:`
+Track me: ${window.location.href}`);window.open(`sms:?body=${Z}`),v("🆘 SOS SMS opened","warn")},[e,v]);W.useEffect(()=>{const Z=J=>{J.key==="Escape"&&S(!1),(J.ctrlKey||J.metaKey)&&J.key==="\\"&&E(q=>!q)};return window.addEventListener("keydown",Z),()=>window.removeEventListener("keydown",Z)},[]);const $=w?`${xa}px`:"0px";return k.jsxs("div",{style:{width:"100%",height:"100%",position:"relative",overflow:"hidden",fontSize:"16px",lineHeight:1.35},children:[k.jsx("div",{ref:z,style:{position:"fixed",top:"44px",left:$,right:0,bottom:0,zIndex:1,transition:"left 0.25s var(--ease-smooth)"}}),k.jsx(sg,{from:e,to:i,onShareClick:Z=>v(Z),onSidebarToggle:()=>E(Z=>!Z),sidebarOpen:w}),k.jsx(dg,{open:w,width:xa,from:e,to:i,onFromChange:n,onFromClear:()=>n(null),onToChange:o,onToClear:()=>o(null),home:U,onSetHome:Le,onLoadHome:_t,onGetLocation:mt,routes:a,activeRouteIdx:f,onRouteSelect:h,loading:p,nearbyStops:C,onNearbyStopClick:O,onGetRoutes:ki}),k.jsx(pg,{onCentreMe:K,onSharePanel:()=>S(!0),onSOS:R,sidebarOpen:w}),M&&k.jsx(mg,{from:e,to:i,onClose:()=>S(!1),showToast:v}),k.jsx("style",{children:`
+        /* Keep attribution aligned when sidebar opens */
         .leaflet-control-attribution {
           margin-left: ${w?xa+"px":"0px"} !important;
           transition: margin-left 0.25s;
+
+          font-size: 13px !important;
+          padding: 6px 8px !important;
+          background: rgba(10, 16, 26, 0.72) !important;
+          color: rgba(255,255,255,0.78) !important;
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(0,229,255,0.18);
+          border-radius: 10px;
         }
+
+        /* Make zoom controls easier to hit + more readable */
         .leaflet-control-zoom {
           margin-right: 56px !important;
           margin-bottom: 20px !important;
+          border: 1px solid rgba(0,229,255,0.18) !important;
+          border-radius: 12px !important;
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .leaflet-control-zoom a {
+          width: 44px !important;
+          height: 44px !important;
+          line-height: 44px !important;
+          font-size: 22px !important;
+          background: rgba(10, 16, 26, 0.72) !important;
+          color: rgba(255,255,255,0.9) !important;
+        }
+        .leaflet-control-zoom a:hover {
+          background: rgba(18, 28, 44, 0.82) !important;
+        }
+
+        /* Brighten dark tiles (keeps your dark theme but improves visibility) */
+        .leaflet-tile {
+          filter: brightness(1.18) contrast(1.06) saturate(1.08);
+        }
+
+        /* Make overlays pop slightly */
+        .leaflet-overlay-pane svg path {
+          filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
         }
       `}),k.jsx(_g,{toasts:g})]})}wa.createRoot(document.getElementById("root")).render(k.jsx(Rm.StrictMode,{children:k.jsx(kg,{})}));
