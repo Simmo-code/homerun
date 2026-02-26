@@ -1,21 +1,21 @@
 /* ═══════════════════════════════════════════════
-   HOMERUN — Global Design System
-   Inspired by PureTrack's map-first aviation UI
+   HOMERUN — Global Design System (UPDATED)
+   Bigger type + brighter surfaces + improved map legibility
    ═══════════════════════════════════════════════ */
 
 :root {
-  /* Core palette */
-  --bg:           #070b12;
-  --surface-0:    #0a0f1a;
-  --surface-1:    #0d1525;
-  --surface-2:    #111c30;
-  --surface-3:    #182640;
-  --surface-4:    #1e3050;
+  /* ── Core palette (slightly brighter than before) ── */
+  --bg:           #0b1220;   /* was #070b12 */
+  --surface-0:    #0e1727;   /* was #0a0f1a */
+  --surface-1:    #101c30;   /* was #0d1525 */
+  --surface-2:    #14233b;   /* was #111c30 */
+  --surface-3:    #1a2e4d;   /* was #182640 */
+  --surface-4:    #21385e;   /* was #1e3050 */
 
-  /* Borders */
-  --border-subtle:  rgba(0, 180, 220, 0.08);
-  --border-default: rgba(0, 180, 220, 0.14);
-  --border-strong:  rgba(0, 180, 220, 0.28);
+  /* Borders (a touch stronger for readability) */
+  --border-subtle:  rgba(0, 180, 220, 0.10);
+  --border-default: rgba(0, 180, 220, 0.18);
+  --border-strong:  rgba(0, 180, 220, 0.32);
 
   /* Brand accents */
   --cyan:    #00e5ff;
@@ -29,21 +29,30 @@
   --violet:  #b388ff;
   --blue:    #82b1ff;
 
-  /* Text */
-  --text-primary:   #dde8f5;
-  --text-secondary: #6b8299;
-  --text-muted:     #3a4f66;
-  --text-ghost:     #1e2d40;
+  /* Text (brighter + better contrast) */
+  --text-primary:   rgba(255,255,255,0.92); /* was #dde8f5 */
+  --text-secondary: rgba(255,255,255,0.72); /* was #6b8299 */
+  --text-muted:     rgba(255,255,255,0.54); /* was #3a4f66 */
+  --text-ghost:     rgba(255,255,255,0.32); /* was #1e2d40 */
 
   /* Typography */
   --font-mono: 'JetBrains Mono', monospace;
   --font-ui:   'Barlow Condensed', sans-serif;
 
+  /* Global type scale (bigger by default) */
+  --ui-size: 16px;     /* base app text */
+  --mono-size: 14px;   /* mono/data text */
+  --line: 1.35;
+
   /* Layout */
   --sidebar-w: 340px;
   --sidebar-collapsed: 52px;
   --topbar-h: 44px;
-  --panel-radius: 10px;
+  --panel-radius: 12px; /* slightly rounder feels “less cramped” */
+
+  /* Controls */
+  --control-bg: rgba(12, 20, 34, 0.72);
+  --control-bg-hover: rgba(20, 32, 52, 0.82);
 
   /* Transitions */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -65,8 +74,16 @@ html, body {
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-ui);
+  font-size: var(--ui-size);
+  line-height: var(--line);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional helpers (useful if components already apply these classes) */
+.mono, code, pre {
+  font-family: var(--font-mono);
+  font-size: var(--mono-size);
 }
 
 #root {
@@ -76,54 +93,71 @@ html, body {
 }
 
 /* Scrollbars */
-::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar { width: 6px; height: 6px; } /* was 3px */
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 6px; }
 
 /* Selection */
 ::selection { background: rgba(0, 229, 255, 0.2); color: var(--cyan); }
 
-/* Leaflet overrides */
+/* ─────────────── Leaflet overrides ─────────────── */
+
 .leaflet-container {
-  background: #060a10 !important;
+  background: #0a1020 !important; /* slightly brighter than before */
   font-family: var(--font-ui) !important;
 }
 
+/* Brighten tiles (keeps Dark Matter but makes it readable) */
+.leaflet-tile {
+  filter: brightness(1.18) contrast(1.06) saturate(1.08);
+}
+
+/* Bigger, easier zoom controls */
 .leaflet-control-zoom {
   border: 1px solid var(--border-default) !important;
-  border-radius: 8px !important;
+  border-radius: 12px !important;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
 }
 
 .leaflet-control-zoom a {
-  background: var(--surface-1) !important;
+  background: var(--control-bg) !important;
   color: var(--text-secondary) !important;
   border-bottom: 1px solid var(--border-subtle) !important;
   font-family: var(--font-mono) !important;
-  font-size: 16px !important;
-  line-height: 26px !important;
-  width: 28px !important;
-  height: 28px !important;
+
+  /* Bigger hit targets */
+  font-size: 22px !important;
+  line-height: 44px !important;
+  width: 44px !important;
+  height: 44px !important;
+
   transition: all 0.15s;
 }
 
 .leaflet-control-zoom a:hover {
-  background: var(--surface-2) !important;
+  background: var(--control-bg-hover) !important;
   color: var(--cyan) !important;
 }
 
+/* Attribution: readable + not tiny */
 .leaflet-control-attribution {
-  background: rgba(7,11,18,0.75) !important;
+  background: rgba(10,16,26,0.72) !important;
   color: var(--text-muted) !important;
-  font-size: 10px !important;
+  font-size: 12px !important; /* was 10px */
   font-family: var(--font-mono) !important;
+  padding: 6px 8px !important;
   backdrop-filter: blur(8px);
-  border-top: 1px solid var(--border-subtle) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 10px;
+  margin: 10px !important; /* gives it breathing room */
 }
 
-.leaflet-control-attribution a { color: var(--text-secondary) !important; }
+.leaflet-control-attribution a {
+  color: var(--text-secondary) !important;
+}
 
+/* Popup styling */
 .leaflet-popup-content-wrapper {
   background: var(--surface-1) !important;
   color: var(--text-primary) !important;
@@ -136,15 +170,22 @@ html, body {
 .leaflet-popup-content {
   margin: 0 !important;
   font-family: var(--font-ui) !important;
+  font-size: 15px;
+  line-height: 1.25;
 }
 
 .leaflet-popup-tip-container { display: none; }
 
 .leaflet-popup-close-button {
   color: var(--text-secondary) !important;
-  top: 8px !important;
-  right: 8px !important;
-  font-size: 16px !important;
+  top: 10px !important;
+  right: 10px !important;
+  font-size: 18px !important;
+}
+
+/* Make vector overlays pop a bit */
+.leaflet-overlay-pane svg path {
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
 }
 
 /* ─────────────── ANIMATIONS ─────────────── */
@@ -157,7 +198,7 @@ html, body {
 
 @keyframes blinkDot {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
+  50%      { opacity: 0.3; }
 }
 
 @keyframes shimmer {
